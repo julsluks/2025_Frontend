@@ -1,47 +1,116 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref } from 'vue';
+import Step1Connect from './views/Step1Connect.vue';
+import Step2Verify from './views/Step2Verify.vue';
+import Step3Plan from './views/Step3Plan.vue';
+import Step4Success from './views/Step4Success.vue';
+
+const currentStep = ref(1);
+const email = ref('');
+const userId = ref(null);
+const selectedPlan = ref(null);
+
+const goToStep = (step) => {
+  currentStep.value = step;
+};
+
+const setEmail = (value) => {
+  email.value = value;
+};
+
+const setUserId = (id) => {
+  userId.value = id;
+};
+
+const setPlan = (plan) => {
+  selectedPlan.value = plan;
+};
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="app-container">
+    <main class="main-content">
+      <Step1Connect 
+        v-if="currentStep === 1" 
+        @next-step="goToStep(2)"
+        @set-email="setEmail"
+      />
+      <Step2Verify 
+        v-else-if="currentStep === 2" 
+        :email="email"
+        @next-step="goToStep(3)"
+        @set-user-id="setUserId"
+        @previous-step="goToStep(1)"
+      />
+      <Step3Plan 
+        v-else-if="currentStep === 3" 
+        :user-id="userId"
+        @next-step="goToStep(4)"
+        @set-plan="setPlan"
+      />
+      <Step4Success 
+        v-else-if="currentStep === 4" 
+        :selected-plan="selectedPlan"
+      />
+    </main>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style>
+:root {
+  --primary-color: #4a6cf7;
+  --primary-hover: #3a5ce5;
+  --error-color: #e74c3c;
+  --success-color: #2ecc71;
+  --text-color: #333333;
+  --light-text: #666666;
+  --lighter-text: #999999;
+  --border-color: #e1e1e1;
+  --background-light: #f8f9fa;
+  --white: #ffffff;
+  --box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+body, html {
+  height: 100%;
+  width: 100%;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+body {
+  background-color: var(--background-light);
+  color: var(--text-color);
+  line-height: 1.6;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .main-content {
+    max-width: 480px;
   }
 }
 </style>

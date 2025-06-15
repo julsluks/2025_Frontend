@@ -1,6 +1,13 @@
-@import './base.css';
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
 
 #app {
+  height: 100%;
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;

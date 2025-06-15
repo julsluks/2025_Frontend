@@ -1,4 +1,5 @@
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+// Usar rutas relativas en lugar de absolutas
+const API_BASE = '/api';
 
 /**
  * API service for interacting with the backend
@@ -10,7 +11,7 @@ export default {
      * @returns {Promise<Object>} - Response data
      */
     sendEmail(email) {
-        return fetch(`${API_BASE_URL}/api/send-email?email=${encodeURIComponent(email)}`)
+        return fetch(`${API_BASE}/send-email?email=${encodeURIComponent(email)}`)
             .then(response => {
                 if (!response.ok) {
                     return response.json().then(err => Promise.reject(err));
@@ -26,7 +27,7 @@ export default {
      * @returns {Promise<Object>} - Response with user_id if successful
      */
     validateEmailCode(email, code) {
-        return fetch(`${API_BASE_URL}/api/validate-email`, {
+        return fetch(`${API_BASE}/validate-email`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +47,7 @@ export default {
      * @returns {Promise<Object>} - Product data
      */
     getProducts() {
-        return fetch(`${API_BASE_URL}/api/products`)
+        return fetch(`${API_BASE}/products`)
             .then(response => {
                 if (!response.ok) {
                     return response.json().then(err => Promise.reject(err));
@@ -61,7 +62,7 @@ export default {
      * @returns {Promise<Object>} - Response data
      */
     startTrial(userId) {
-        return fetch(`${API_BASE_URL}/api/start-trial`, {
+        return fetch(`${API_BASE}/start-trial`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

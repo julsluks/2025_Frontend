@@ -22,5 +22,11 @@ export default defineConfig({
     watch: {
       usePolling: true,
     },
+    proxy: {
+      '/api': {
+        target: 'http://back:3000', // Usar el nombre del servicio Docker "back"
+        changeOrigin: true
+      }
+    }
   },
 })
