@@ -25,7 +25,6 @@ const props = defineProps({
 </script>
 
 <style scoped>
-/* Benefits section */
 .benefits-section {
     display: flex;
     flex-direction: column;
@@ -41,7 +40,6 @@ const props = defineProps({
     padding: 0.75rem 1rem;
 }
 
-/* Aplicamos el fondo solo a los elementos impares (1º, 3º, 5º...) */
 .benefit-item:nth-child(odd) {
     background-color: rgba(255, 255, 255, 0.15);
 }

@@ -287,7 +287,6 @@ const handleConnect = async () => {
         margin-bottom: 1rem; 
     }
     
-    /* Deshacer centrado horizontal del checkbox en desktop */
     .newsletter-option {
         margin: 0.25rem 0;  
         padding: 0.25rem 0;  

@@ -320,7 +320,6 @@ startResendTimer();
         margin-top: auto;
     }
 
-    /* Ajustes específicos para el layout */
     .title {
         font-size: 2.5rem;
     }

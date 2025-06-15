@@ -17,7 +17,7 @@ const plans = ref(null);
 const selectedPlan = ref(null);
 const isLoading = ref(false);
 const errorMessage = ref('');
-const currency = ref('USD'); // Default currency
+const currency = ref('USD'); 
 
 const loadPlans = async () => {
     isLoading.value = true;
@@ -195,7 +195,7 @@ onMounted(loadPlans);
     font-size: 1.75rem;
     font-weight: 700;
     text-align: center;
-    margin: 5rem 0 2.5rem; /* Aumentado de 3.5rem a 5rem para más separación del botón */
+    margin: 5rem 0 2.5rem; 
 }
 
 .currency-selector {
@@ -270,7 +270,6 @@ onMounted(loadPlans);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* Aplicamos borde arcoíris SOLO cuando está seleccionado */
 .plan-card.selected {
     border: 2px solid transparent;
     background-image: 
@@ -285,7 +284,6 @@ onMounted(loadPlans);
     padding: 1.5rem;
 }
 
-/* Borde especial para featured + selected */
 .plan-card.featured.selected {
     border: 2px solid transparent;
     background-image: 
@@ -374,8 +372,8 @@ onMounted(loadPlans);
 .plan-trial {
     font-size: 0.9rem;
     margin-top: 0.6rem;
-    color: #FFD166; /* Color amarillo que coincide con el botón */
-    background-color: #2e1d5b; /* Morado oscuro como el fondo */
+    color: #FFD166; 
+    background-color: #2e1d5b; 
     display: inline-block;
     padding: 0.3rem 0.6rem;
     border-radius: 4px;
