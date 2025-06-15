@@ -1,0 +1,44 @@
+services:
+  front:
+    build:
+      context: ./front-vue
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./front-vue:/app
+      - /app/node_modules
+    working_dir: /app
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - HOST=0.0.0.0
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - network
+
+  back:
+    build:
+      context: ./back-node
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./back-node:/app
+      - /app/node_modules
+    working_dir: /app
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    env_file:
+      - .env
+    command: "node server.js"
+    restart: unless-stopped
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
