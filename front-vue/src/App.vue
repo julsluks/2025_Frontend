@@ -29,30 +29,28 @@ const setPlan = (plan) => {
 
 <template>
   <div class="app-container">
-    <main class="main-content">
-      <Step1Connect 
-        v-if="currentStep === 1" 
-        @next-step="goToStep(2)"
-        @set-email="setEmail"
-      />
-      <Step2Verify 
-        v-else-if="currentStep === 2" 
-        :email="email"
-        @next-step="goToStep(3)"
-        @set-user-id="setUserId"
-        @previous-step="goToStep(1)"
-      />
-      <Step3Plan 
-        v-else-if="currentStep === 3" 
-        :user-id="userId"
-        @next-step="goToStep(4)"
-        @set-plan="setPlan"
-      />
-      <Step4Success 
-        v-else-if="currentStep === 4" 
-        :selected-plan="selectedPlan"
-      />
-    </main>
+    <Step1Connect 
+      v-if="currentStep === 1" 
+      @next-step="goToStep(2)"
+      @set-email="setEmail"
+    />
+    <Step2Verify 
+      v-else-if="currentStep === 2" 
+      :email="email"
+      @next-step="goToStep(3)"
+      @set-user-id="setUserId"
+      @previous-step="goToStep(1)"
+    />
+    <Step3Plan 
+      v-else-if="currentStep === 3" 
+      :user-id="userId"
+      @next-step="goToStep(4)"
+      @set-plan="setPlan"
+    />
+    <Step4Success 
+      v-else-if="currentStep === 4" 
+      :selected-plan="selectedPlan"
+    />
   </div>
 </template>
 
@@ -85,32 +83,8 @@ body, html {
   width: 100%;
 }
 
-body {
-  background-color: var(--background-light);
-  color: var(--text-color);
-  line-height: 1.6;
-}
-
 .app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  padding: 0;
-  margin: 0;
-}
-
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  height: 100vh;
   width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-@media screen and (min-width: 768px) {
-  .main-content {
-    max-width: 480px;
-  }
 }
 </style>
